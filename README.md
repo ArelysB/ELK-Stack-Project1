@@ -1,13 +1,5 @@
 # ELK-Stack-Project1
-Azure cloud network desgin and ELK server configuration.
-The files listed in this repository were used to configure the network presented below
-![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Network-Diagram/ELK-Stack-Project1-Network_Diagram.PNG)
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Project1-Network_Diagram file may be used to install only certain pieces of it, such as Filebeat.
-## Enter the playbook files:
-- [Webservers](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/webserversYML.txt)
-- [Filebeat-playbook.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/filebeatsyml.txt)
-- [Elk_Playbook.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/ELK_Playbook.txt)
-- [Metricbeat.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/MetricbeatsYML.txt)
+
 ## This document contains the following details:
 - Description of the Topology
 - Access Policies
@@ -15,6 +7,7 @@ These files have been tested and used to generate a live ELK deployment on Azure
 - Beats in Use
 - Machines Being Monitored
 - How to Use the Ansible Build
+
 ### Drescription of the Topology
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 Load balancing ensures that the application will be highly available, in addition to restricting DDoS attacks to the network.
@@ -38,5 +31,22 @@ Metricbeat helps monitor servers and the services they host by collecting metric
 
 The configuration details of each machine is found below.
 
-![]
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/IP-config.PNG)
+
+
+Azure cloud network desgin and ELK server configuration.
+The files listed in this repository were used to configure the network presented below
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Network-Diagram/ELK-Stack-Project1-Network_Diagram.PNG)
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Project1-Network_Diagram file may be used to install only certain pieces of it, such as Filebeat.
+## Enter the playbook files:
+- [Webservers](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/webserversYML.txt)
+- [Filebeat-playbook.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/filebeatsyml.txt)
+- [Elk_Playbook.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/ELK_Playbook.txt)
+- [Metricbeat.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/MetricbeatsYML.txt)
+
+
+
+
+
+### Access Policies
 
