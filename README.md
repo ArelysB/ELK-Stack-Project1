@@ -76,7 +76,6 @@ The configuration details of each machine is found below.
 
 
 
-
 ## Playbook files:
 - [Webservers](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/webserversYML.txt)
 - [Filebeat-playbook.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/filebeatsyml.txt)
@@ -84,8 +83,44 @@ The configuration details of each machine is found below.
 - [Metricbeat.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/MetricbeatsYML.txt)
 
 
-
-
-
 ### Access Policies
+
+The machines on the internal network are not exposed to the public Internet. 
+
+Only the *Jump-Box* machine can accept connections from the Internet. Access to this machine is only allowed from the following IP address 73.106.28.69 (my local workstation).
+
+#### Add whitelisted IP addresses
+
+Machines within the network can only be accessed by Jump-Box.
+Which machine did you allow to access your ELK VM? *Jump-Box-Provisioner* What was its IP address? *The Jump-Box 10.1.0.9*
+
+A summary of the access policies in place can be found in the table below.
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/VMsAccessibility.PNG)
+
+### Elk Configuration
+Ansible was used to automate the configuration of the ELK machine. No configuration was performed manually. 
+
+One of the advantages of Ansible is that it allows to quickly and easily deploy multi layer apps. So it is not necessary to write custom code to automate systems; once the tasks  list required to be done by writing a playbook are defined,  Ansible will figure out how to get the systems to deploy the playbooks in the way  system admins want them to be.
+
+#### The Process 
+##### 1- SSH into the jump Box:
+`ssh Red-sysadmin@13.82.3.71`
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/SSH%20into%20Jump-Box.PNG)
+##### 2- Start and attached to the ansible docker: 
+`sudo docker start elegant_sutherland`
+`elegant_sutherland`
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Starting%20and%20attaching%20the%20Ansible%20container.PNG)
+##### 3- Go to /etc/ansible/ and created the [ELK playbook](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/ELK_Playbook.txt)
+using the command `nano Elk_Playbook.yml`
+##### 4- Run Elk_Playbook.yml
+`nano ansible-playbook Elk_Playbook.yml`
+##### 5- SSH into the ELK-VM to verify ELK is up and running
+`ssh ansible@10.1.0.9
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/SSH%20into%20ELK-VM.PNG)
+
+
+
+
+
 
