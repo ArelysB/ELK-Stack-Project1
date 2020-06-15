@@ -105,22 +105,122 @@ One of the advantages of Ansible is that it allows to quickly and easily deploy 
 
 #### The Process 
 ##### 1- SSH into the jump Box:
+
 `ssh Red-sysadmin@13.82.3.71`
+
 ![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/SSH%20into%20Jump-Box.PNG)
+
 ##### 2- Start and attached to the ansible docker: 
+
 `sudo docker start elegant_sutherland`
+
 `elegant_sutherland`
+
 ![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Starting%20and%20attaching%20the%20Ansible%20container.PNG)
+
 ##### 3- Go to /etc/ansible/ and created the [ELK playbook](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/ELK_Playbook.txt)
+
 using the command `nano Elk_Playbook.yml`
+
 ##### 4- Run Elk_Playbook.yml
+
 `nano ansible-playbook Elk_Playbook.yml`
+
 ##### 5- SSH into the ELK-VM to verify ELK is up and running
-`ssh ansible@10.1.0.9
+`ssh ansible@10.1.0.9`
+
 ![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/SSH%20into%20ELK-VM.PNG)
 
 
+Run the commands `sudo docker start elk` to start the container and `sudo docker ps` verify that the container is running.
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Starting%20the%20ELK%20service.PNG)
+
+### Target Machines & Beats
+This ELK server is configured to monitor the following machines:
+
+#### NewDVWA-VM1: 10.1.0.4
+#### NewDVWA-VM2: 10.1.0.5
+
+We have installed the following Beats on these machines:
+
+These Beats allow us to collect the following information from each machine:
 
 
+- Filebeat:  monitors the log files or locations that you specify, collects log events, and forwards them either to Elasticsearch or Logstash for indexing. The Filebeat Elasticsearch module can handle audit logs, deprecation logs, gc logs, server logs, and slow logs.
 
+- Metricbeat collects a variety of metrics from your server (i.e., operating system and services) and ships them to an output destination of your choice. These destinations can be ELK components such as Elasticsearch or Logstash or other data processing platforms such as Redis or Kafka.
+
+
+### Using the Playbooks
+
+In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
+
+SSH into the control node and follow the steps below:
+
+- Create the [filebeat-configuration.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Linux/filebeat-configuration.txt)  file to /etc/ansible/roles/files
+- Update the filebeat-configuration.yml file to include the ELK-VM private IP in lines 1106 and 1806. Use de command `nano filebat-configuration.yml`
+- Run the playbook, and navigate to http://20.186.27.100:5601 (ELK-VM public IP and Kibana port) to check that the installation worked as expected (access to the Kibana GUI). I went to Filebeat ⇒ Add Data ⇒ System logs to check Module status 
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Filebeatstatus.PNG)
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Filebeat%20Syslog.PNG)
+
+With Filebeat it is possible to monitor not only system logs, but attempts to SSH connections and sudo commands too.
+
+- SSHconnections
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Filebeat%20SSH%20login%20attempts.PNG)
+
+- Sudo commands
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Filebeat%20Sudo%20commands.PNG)
+
+Explore the options to build useful statistics.
+
+### Filebeat instalation.
+
+#### Playbookfile:
+[Filebeat-playbook.yml]https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/filebeatsyml.txt()
+
+- Create the [filebeat-configuration.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Linux/filebeat-configuration.txt)  file to /etc/ansible/roles/files
+- Update the filebeat-configuration.yml file to include the ELK-VM private IP in lines 1106 and 1806. Use de command `nano filebat-configuration.yml`
+
+#### Where do you copy it?
+ /etc/ansible/roles/
+
+#### Which file do you update to make Ansible run the playbook on a specific machine? 
+The [hots](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Linux/hosts.txt) file, located in /etc/ansible/hosts
+   For this task use the command `nano hosts`
+
+#### How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+For the ELK, creat a new group called [elkservers] and under it, type in the ELK-VM private IP. For the filebeat install, I just left the NewDVWA-VM 1 and NewDVWA-VM 2 IP addresses under the group [webservers]. 
+
+#### Which URL do you navigate to in order to check that the ELK server is running?
+
+http://20.186.27.100:5601 
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/KibanaGUI-Access.PNG)
+
+
+### Metricbeat instalation.
+
+#### Playbookfile:
+
+[Metricbeat.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/MetricbeatsYML.txt)
+
+- Create the [metricbeat-configuration.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Linux/metricbeatyml.txt)  file to /etc/ansible/roles/files
+- Update the metricbeat-configuration.yml file to include the ELK-VM private IP in lines 62 and 96. Use de command `nano metricbeat-configuration.yml`
+
+#### How do I specify which machine to install the ELK server on versus which to install Filebeat on?
+For the ELK, creat a new group called [elkservers] and under it, type in the ELK-VM private IP. For the filebeat install, I just left the NewDVWA-VM 1 and NewDVWA-VM 2 IP addresses under the group [webservers]. 
+
+#### Which URL do you navigate to in order to check that the metricbeate service is running?
+
+http://20.186.27.100:5601 
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/KibanaGUI-Access.PNG)
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Metricbeat%20Module%20status.PNG)
+
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/Metricbeat%20Docker%20overview1.PNG)
 
