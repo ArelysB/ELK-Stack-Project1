@@ -30,13 +30,13 @@ These files have been tested and used to generate a live ELK deployment on Azure
 #### NewDVWA-VM2
 - Region: East US2
 - Availability zone: 1
-- Private IP: 10.1.0.9
+- Private IP: 10.1.0.5
 - Public IP: none
 
 #### ELK-VM
 - Region: East US2
 - Availability zone: 2
-- Private IP: 10.1.0.5
+- Private IP: 10.1.0.9
 - Public IP: 20.186.27.100
 
 #### Firewall (Network Security Group JumpBox nsg)
