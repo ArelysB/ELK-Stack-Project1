@@ -1,5 +1,5 @@
 # ELK-Stack-Project1
-
+Azure cloud network desgin and ELK server configuration.
 ## This document contains the following details:
 - Description of the Topology
 - Access Policies
@@ -9,8 +9,49 @@
 - How to Use the Ansible Build
 
 ### Drescription of the Topology
+
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 Load balancing ensures that the application will be highly available, in addition to restricting DDoS attacks to the network.
+The files listed in this repository were used to configure the network presented below
+![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Network-Diagram/ELK-Stack-Project1-Network_Diagram.PNG)
+These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Project1-Network_Diagram file may be used to install only certain pieces of it, such as Filebeat.
+
+#### Jump box
+- Region: East US
+- Private IP: 10.0.0.4
+- Public IP (static): 13.82.3.71
+
+#### NewDVWA-VM1
+- Region: East US2
+- Availability zone: 1
+- Private IP: 10.1.0.4
+- Public IP: none
+
+#### NewDVWA-VM2
+- Region: East US2
+- Availability zone: 1
+- Private IP: 10.1.0.9
+- Public IP: none
+
+#### ELK-VM
+- Region: East US2
+- Availability zone: 2
+- Private IP: 10.1.0.5
+- Public IP: 20.186.27.100
+
+#### Firewall (Network Security Group JumpBox nsg)
+- Add whitelist of IPs: for the IP addresses that are allowed to the network.
+- Setup inbound rules to only allow the IP in the whitelist access to the jump-box from the external network and monitoring.
+
+#### Peering
+- The peering was added in order to make possible the two regions  to communicate with each other.
+
+#### Load balancer
+- Fronted IP Configuration:40.70.156.45 (Front_End-LB-RedTeam)
+- Backend pools: NewDVWA-VM1 and qDVWA-VM2
+- Health probes: setup for load balancing rule and detect the failure of an application on a backend endpoint.
+- Load balancing rules: open port 80 for HTTP
+
 #### What aspect of security do load balancers protect? 
 
 Load balancers are used to reroute traffic in real-time from one server to another in the event of a DDoS attack, to prevent the server becoming unavailable. And because of this, load balancers help to eliminate single points of failure, reduce the attack surface, and make it harder to exhaust resources and saturate links.
@@ -34,11 +75,9 @@ The configuration details of each machine is found below.
 ![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Images/IP-config.PNG)
 
 
-Azure cloud network desgin and ELK server configuration.
-The files listed in this repository were used to configure the network presented below
-![](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Network-Diagram/ELK-Stack-Project1-Network_Diagram.PNG)
-These files have been tested and used to generate a live ELK deployment on Azure. They can be used to either recreate the entire deployment pictured above. Alternatively, select portions of the Project1-Network_Diagram file may be used to install only certain pieces of it, such as Filebeat.
-## Enter the playbook files:
+
+
+## Playbook files:
 - [Webservers](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/webserversYML.txt)
 - [Filebeat-playbook.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/filebeatsyml.txt)
 - [Elk_Playbook.yml](https://github.com/ArelysB/ELK-Stack-Project1/blob/master/Ansible/ELK_Playbook.txt)
