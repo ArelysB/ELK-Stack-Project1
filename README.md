@@ -1,5 +1,5 @@
 # ELK-Stack-Project1
-Azure cloud network desgin and ELK server configuration.
+Azure cloud network design and ELK server configuration.
 ## This document contains the following details:
 - Description of the Topology
 - Access Policies
